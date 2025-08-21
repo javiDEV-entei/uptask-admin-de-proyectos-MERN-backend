@@ -3,6 +3,7 @@ import {body, param} from 'express-validator'
 import { ProjectController } from '../controllers/ProjectController'
 import { handleInputErrors } from '../middleware/validation'
 import { TaskController } from '../controllers/TaskController'
+import { validateProjectExist } from '../middleware/project'
 
 const router = Router()
 
@@ -47,6 +48,22 @@ router.put('/:id',
     /** Routes for tasks*/
 
     router.post('/:projectId/tasks',
+        validateProjectExist,
+        body('name')
+        .notEmpty().withMessage('El Nombre de la tarea es Obligatorio'),
+   
+    body('description')
+        .notEmpty().withMessage('La Descripcion de la tarea es Obligatoria'),
+    handleInputErrors,
         TaskController.creeateTask)
+
+        router.get('/:projectId/tasks',
+            validateProjectExist,
+            TaskController.getProjectTasks)
+
+
+        router.get('/:projectId/tasks/:taskId',
+            validateProjectExist,
+            TaskController.getTaskById)
 
 export default router
