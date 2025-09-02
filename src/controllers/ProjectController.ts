@@ -9,7 +9,6 @@ export class ProjectController {
         
         const project = new Project(req.body)
 
-        
         try {
            await project.save()
            res.send('proyecto creado correctamente')
@@ -38,6 +37,7 @@ export class ProjectController {
         
         try {
             const project = await (await Project.findById(id)).populate('tasks')
+
             if (!project) {
                 const error =new Error('Proyecto no encontrado')
                 return res.status(404).json({error:error.message})
