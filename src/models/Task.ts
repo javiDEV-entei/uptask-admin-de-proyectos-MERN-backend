@@ -3,7 +3,7 @@ import mongoose, {Schema, Document, Types} from "mongoose";
 
 const taskStatus ={
     PENDING: 'pending',
-    ON_HOLD: 'OnHold',
+    ON_HOLD: 'onHold',
     IN_PROGRESS: 'inProgress',
     UNDER_REVIEW: 'underReview',
     COMPLETED: 'completed'
