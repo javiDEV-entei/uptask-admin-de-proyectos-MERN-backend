@@ -31,6 +31,8 @@ router.post('/confirm-account',
         handleInputErrors,
         AuthController.confirmAccount
 )
+
+
 router.post('/login', 
     body('email')
         .isEmail().withMessage('E-mail no valido'),
@@ -38,6 +40,15 @@ router.post('/login',
         .notEmpty().withMessage('El password no puede ir vacio'),
         handleInputErrors,
         AuthController.login
+)
+
+
+
+router.post('/request-code', 
+    body('email')
+        .isEmail().withMessage('E-mail no valido'),
+        handleInputErrors,
+        AuthController.requestConfirmationCode
 )
 
 
