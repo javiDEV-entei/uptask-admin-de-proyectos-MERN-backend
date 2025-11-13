@@ -1,7 +1,8 @@
-import mongoose, {Schema, Document} from "mongoose";
+import mongoose, {Schema, Document, Types} from "mongoose";
 
 
 export interface IUser extends Document{
+    _id: Types.ObjectId
     email: string
     password: string
     name: string
@@ -25,8 +26,9 @@ const userSchema: Schema = new Schema({
         required:true
     },
     confirmed:{
-        type:Boolean,
-        default:false
+        type: Boolean,
+        required: true,
+        default: false
     },
 
 }) 
