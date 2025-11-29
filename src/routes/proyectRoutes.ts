@@ -118,8 +118,8 @@ router.put('/:id',
         handleInputErrors,
         TeamMemberController.addMemberById
     )
-    router.delete('/:projectId/team',
-        body('id')
+    router.delete('/:projectId/team/:userId',
+        param('userId')
             .isMongoId().withMessage('ID no valido'),
         handleInputErrors,
         TeamMemberController.removeMemberById
