@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 
 import Task from '../models/Task';
+import path from 'node:path';
 
 export class TaskController{
 
@@ -42,7 +43,9 @@ export class TaskController{
 
         try {
 
-            const task = await (await Task.findById(req.task.id)).populate({path:'completedBy.user', select: 'id name email'})
+            const task = await await Task.findById(req.task.id)
+            .populate({path:'completedBy.user', select: 'id name email'})
+            .populate({path:'notes', populate: {path: 'createdBy',select: 'id name email' }})
              res.json(task)
 
 
